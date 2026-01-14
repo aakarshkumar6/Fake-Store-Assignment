@@ -39,8 +39,8 @@ A modern, responsive product dashboard built with React, Redux Toolkit, and Type
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/product-dashboard.git
-   cd product-dashboard
+   git https://github.com/aakarshkumar6/Fake-Store-Assignment.git
+   cd Fake-Store-Assignment
    ```
 
 2. **Install dependencies**
@@ -69,7 +69,7 @@ A modern, responsive product dashboard built with React, Redux Toolkit, and Type
 
 4. **Open your browser**
    
-   Navigate to `http://localhost:5173`
+   Navigate to `http://localhost:8080`
 
 ## 📁 Project Structure
 
