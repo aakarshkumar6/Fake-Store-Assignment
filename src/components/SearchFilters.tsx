@@ -58,7 +58,7 @@ export function SearchFilters() {
             value={selectedCategory || 'all'}
             onValueChange={(value) => dispatch(setSelectedCategory(value === 'all' ? '' : value))}
           >
-            <SelectTrigger className="w-[160px]">
+            <SelectTrigger className="w-[160px]" aria-label="Category">
               <SelectValue placeholder="Category" />
             </SelectTrigger>
             <SelectContent>
@@ -75,7 +75,7 @@ export function SearchFilters() {
             value={sortBy}
             onValueChange={(value) => dispatch(setSortBy(value as SortOption))}
           >
-            <SelectTrigger className="w-[160px]">
+            <SelectTrigger className="w-[160px]" aria-label="Sort">
               <SlidersHorizontal className="mr-2 h-4 w-4" />
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>

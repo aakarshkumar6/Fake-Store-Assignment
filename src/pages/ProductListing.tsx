@@ -53,7 +53,12 @@ const ProductListing = () => {
 
       <section className="pb-16">
         <div className="container">
-          {status === 'loading' && <ProductGridSkeleton />}
+          {status === 'loading' && (
+            <div aria-label="Loading products">
+              <span className="sr-only">Loading products...</span>
+              <ProductGridSkeleton />
+            </div>
+          )}
           
           {status === 'failed' && (
             <motion.div

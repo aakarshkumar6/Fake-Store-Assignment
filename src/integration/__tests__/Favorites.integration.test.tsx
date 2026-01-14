@@ -21,7 +21,7 @@ describe('Favorites Integration', () => {
     renderWithProviders(<Favorites />);
 
     expect(screen.getByText('No favorites yet')).toBeInTheDocument();
-    expect(screen.getByText("You haven't added any products to your favorites.")).toBeInTheDocument();
+    expect(screen.getByText(/Start exploring our products and save your favorites/i)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /browse products/i })).toBeInTheDocument();
   });
 
@@ -47,7 +47,7 @@ describe('Favorites Integration', () => {
       },
     });
 
-    expect(screen.getByText(/2 favorite items/i)).toBeInTheDocument();
+    expect(screen.getByText(/You have 2 items saved/i)).toBeInTheDocument();
   });
 
   it('should remove product from favorites when button is clicked', async () => {
@@ -112,6 +112,6 @@ describe('Favorites Integration', () => {
       },
     });
 
-    expect(screen.getByText(/1 favorite item/)).toBeInTheDocument();
+    expect(screen.getByText(/You have 1 item saved/i)).toBeInTheDocument();
   });
 });

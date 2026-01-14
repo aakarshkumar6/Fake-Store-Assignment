@@ -42,8 +42,7 @@ describe('ProductListing Integration', () => {
   it('should display loading state initially', () => {
     renderWithProviders(<ProductListing />);
     
-    // Loading spinner should be shown
-    expect(screen.getByText('Loading products...')).toBeInTheDocument();
+    expect(screen.getByLabelText('Loading products')).toBeInTheDocument();
   });
 
   it('should display products after loading', async () => {
@@ -104,7 +103,16 @@ describe('ProductListing Integration', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByText(/3 products/i)).toBeInTheDocument();
+      expect(
+        screen.getByText((_, node) => {
+          if (!node) return false;
+          const hasText = node.textContent === 'Showing 3 products';
+          const childrenHaveText = Array.from(node.children).some(
+            (child) => child.textContent === 'Showing 3 products',
+          );
+          return hasText && !childrenHaveText;
+        }),
+      ).toBeInTheDocument();
     });
   });
 
@@ -120,7 +128,7 @@ describe('ProductListing Integration', () => {
       },
     });
 
-    expect(screen.getByText('Error loading products')).toBeInTheDocument();
+    expect(screen.getByText('Something went wrong')).toBeInTheDocument();
     expect(screen.getByText('Failed to fetch products')).toBeInTheDocument();
   });
 

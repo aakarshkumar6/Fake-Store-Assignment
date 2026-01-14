@@ -1,10 +1,30 @@
 import '@testing-library/jest-dom';
 import { cleanup } from '@testing-library/react';
-import { afterEach, vi } from 'vitest';
+import { afterEach, beforeAll, vi } from 'vitest';
 
 // Cleanup after each test
 afterEach(() => {
   cleanup();
+});
+
+// Suppress noisy act() warnings coming from Radix Select internals
+beforeAll(() => {
+  const originalError = console.error;
+
+  vi.spyOn(console, 'error').mockImplementation((...args) => {
+    const [firstArg] = args;
+
+    if (
+      typeof firstArg === 'string' &&
+      firstArg.includes('not wrapped in act(...)') &&
+      (firstArg.includes('SelectItemText') || firstArg.includes('Select'))
+    ) {
+      return;
+    }
+
+    // Fallback to original error for everything else
+    originalError(...args);
+  });
 });
 
 // Mock window.matchMedia
